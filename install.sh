@@ -29,10 +29,10 @@ tar xvf openssl-3.1.0.tar.gz
 # https://openresty.org/en/download.html
 tar xvf openresty-1.21.4.2rc1.tar.gz
 
+cd openresty-1.21.4.2rc1/bundle/nginx-1.21.4
+patch -p1 < ../../../modules/nginx_upstream_check_module-0.4.0/check_1.20.1+.patch
 
-cd openresty-1.21.4.2rc1/
-
-patch -p0 < modules/nginx_upstream_check_module-0.4.0/check_1.20.1+.patch
+cd ../../
 
 ./configure -j$(nproc) --prefix=/www/app \
 --group=root --user=root \

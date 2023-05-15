@@ -12,6 +12,8 @@ tar xvf tengine-modules.tar.gz
 tar xvf nginx-module-vts-0.2.1.tar.gz -C modules/
 # https://github.com/yaoweibin/ngx_http_substitutions_filter_module
 tar xvf ngx_http_substitutions_filter_module_v0.6.4.tar.gz -C modules/
+# https://github.com/yaoweibin/nginx_upstream_check_module
+tar xvf nginx_upstream_check_module-0.4.0.tar.gz -C modules/
 # https://github.com/FRiCKLE/ngx_cache_purge
 # 并非官方包，二次开发了
 tar xvf ngx_cache_purge-2.3.tar.gz -C modules/
@@ -29,6 +31,8 @@ tar xvf openresty-1.21.4.2rc1.tar.gz
 
 
 cd openresty-1.21.4.2rc1/
+
+patch -p0 < modules/nginx_upstream_check_module-0.4.0/check_1.20.1+.patch
 
 ./configure -j$(nproc) --prefix=/www/app \
 --group=root --user=root \
@@ -61,7 +65,7 @@ cd openresty-1.21.4.2rc1/
 --add-module=../modules/ngx_backtrace_module \
 --add-module=../modules/ngx_http_concat_module \
 --add-module=../modules/ngx_slab_stat \
---add-module=../modules/ngx_http_upstream_check_module
+--add-module=../modules/nginx_upstream_check_module-0.4.0
 
 make -j$(nproc)
 make install

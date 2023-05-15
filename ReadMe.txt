@@ -1,0 +1,1 @@
+https://github.com/yaoweibin/nginx_upstream_check_module v0.4.0
